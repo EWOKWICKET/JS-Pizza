@@ -1,0 +1,17 @@
+button.btn {
+    width: 65px;
+    height: 35px;
+    padding: 5px 10px; 
+    border: none;
+    border-radius: 8%;
+    background-color: orange;
+    color: white; 
+    cursor: pointer;
+    transition: 0.2s all ease;
+    box-shadow: inset -2px -3px 4px rgba(0, 0, 0, 0.4);
+    
+}
+
+button.btn:hover {
+    background-color: rgb(209, 139, 9);
+}
