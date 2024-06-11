@@ -32,7 +32,7 @@ var pizza_info = [
     {
         id:2,
         icon:'assets/images/pizza_2.jpg',
-        title: "BBQ",
+        title: "    ",
         type: 'М’ясна піца',
         content: {
             meat: ['мисливські ковбаски', 'ковбаски папероні', 'шинка'],
