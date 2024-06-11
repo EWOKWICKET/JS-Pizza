@@ -71,25 +71,6 @@
         gap: 10px;
     }
 
-    .size-weight, .price-info {
-        margin: 0 5px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around; 
-        align-items: center;
-    }
-
-    .price-info {
-        gap: 10px;
-    }
-
-    .size, .weight {
-        display: flex;
-        flex-direction: row;
-        gap: 5px;
-        font-size: 14px;   
-    }
-
     .price {
         font-size: 16px; 
         font-weight: bold;

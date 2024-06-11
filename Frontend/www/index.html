@@ -310,7 +310,42 @@
             </div>    
             
             <div class="cart">
-                    
+                <div class="cart-header">
+                    <h2>Замовлення <span class="amount">3</span></h2>
+                    <button class="btn clear">Очистити замовлення</button>
+                </div>
+
+                <div class="cart-item-list">
+
+                    <div class="cart-item" -data-id="1">
+                        <div class="cart-item-info">
+                            <h3>BBQ (test)</h3>
+
+                            <div class="size-weight" style="flex-direction: row;">
+                                <span class="size"><img src="assets/images/size-icon.svg" alt="Size">30</span>
+                                <span class="weight"><img src="assets/images/weight.svg" alt="Weight">460</span>
+                            </div>
+
+                            <div class="quantity-control">
+                                <span class="price">556грн</span>
+                                <button class="btn quantity-controller decrease">-</button>
+                                <span class="quantity">4</span>
+                                <button class="btn quantity-controller increase">+</button>
+                                <button class="btn delete-item">✕</button>
+                            </div>
+                        </div>
+
+                        <img src="assets/images/pizza_7.jpg" alt="bbq" style="transform: translateX(75px);">
+                    </div>
+
+                </div>
+                <div class="cart-summary">
+                    <div class="summary">
+                        <span>Сума замовлення</span> 
+                        <span class="price">924 грн</span> 
+                    </div>
+                    <button class="btn order">Замовити</button>
+                </div>
             </div>
         </div>
 
