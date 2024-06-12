@@ -2,9 +2,8 @@
     position: relative;
     align-self: center;
     justify-self: center;
-    max-width: 850px;
+    width: 810px;
     display: grid;
-    grid-template-rows: repeat(3, 1fr);
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     padding: 5px;

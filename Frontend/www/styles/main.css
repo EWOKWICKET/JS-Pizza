@@ -68,6 +68,7 @@ hr {
     flex-direction: column;
     justify-content: space-around; 
     /* align-items: center; */
+    gap: 5px;
 }
 
 .price-info {
