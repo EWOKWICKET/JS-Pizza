@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="styles/main.css">
     <link rel="stylesheet" href="styles/shopInfo.css">
     <link rel="stylesheet" href="styles/mainPanel.css">
+    <link rel="stylesheet" href="styles/pizza_info.css">
     <link rel="stylesheet" href="styles/buttons.css">
     <link rel="stylesheet" href="styles/pizzaList.css">
     <link rel="stylesheet" href="styles/cart.css">
@@ -57,7 +58,9 @@
                     </nav>
 
                     <div id="pizza-list">
-                        <div class="pizza-card" id="1">
+                        <div class="pizza-card" data-pizza="">
+                            <div class="banner new">Нова</div>
+
                             <img src="assets/images/pizza_7.jpg" alt="Імпреза">
 
                             <div class="caption">
@@ -91,7 +94,9 @@
                             </div>
                         </div>
 
-                        <div class="pizza-card" id="2">
+                        <div class="pizza-card" data-pizza="">
+                            <div class="banner popular">Популярна</div>
+
                             <img src="assets/images/pizza_2.jpg" alt="bbq">
 
                             <div class="caption">
@@ -125,7 +130,7 @@
                             </div>
                         </div>
 
-                        <div class="pizza-card" id="3">
+                        <div class="pizza-card" data-pizza="">
                             <img src="assets/images/pizza_1.jpg" alt="polo_mix">
 
                             <div class="caption">
@@ -159,7 +164,7 @@
                             </div>
                         </div>
 
-                        <div class="pizza-card" id="4">
+                        <div class="pizza-card" data-pizza="">
                             <img src="assets/images/pizza_5.jpg" alt="Сициліано">
 
                             <div class="caption">
@@ -193,7 +198,7 @@
                             </div>
                         </div>
 
-                        <div class="pizza-card" id="17">
+                        <div class="pizza-card" data-pizza="">
                             <img src="assets/images/pizza_3.jpg" alt="Маргарита">
 
                             <div class="caption">
@@ -216,7 +221,7 @@
                             </div>
                         </div>
 
-                        <div class="pizza-card" id="43">
+                        <div class="pizza-card" data-pizza="">
                             <img src="assets/images/pizza_6.jpg" alt="Мікс смаків">
 
                             <div class="caption">
@@ -250,7 +255,7 @@
                             </div>
                         </div>
 
-                        <div class="pizza-card" id="90">
+                        <div class="pizza-card" data-pizza="">
                             <img src="assets/images/pizza_8.jpg" alt="Дольче Маре">
 
                             <div class="caption">
@@ -273,7 +278,7 @@
                             </div>
                         </div>
 
-                        <div class="pizza-card" id="6">
+                        <div class="pizza-card" data-pizza="">
                             <img src="assets/images/pizza_4.jpg" alt="Россо Густо">
 
                             <div class="caption">
@@ -310,7 +315,7 @@
                 </div>
             </div>    
             
-            <div class="cart">
+            <div class="cart" id="cart">
                 <div class="cart-header">
                     <h2>Замовлення <span class="amount">3</span></h2>
                     <button class="btn clear">Очистити замовлення</button>
@@ -318,7 +323,7 @@
 
                 <div class="cart-item-list">
                     <hr>
-                    <div class="cart-item" -data-id="1">
+                    <div class="cart-item" >
                         <div class="cart-item-info">
                             <h3>BBQ (test)</h3>
 

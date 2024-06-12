@@ -7,3 +7,24 @@
         <button class="btn btn-success plus">+</button>
     </div>
 </div>
+
+<div class="cart-item">
+    <div class="cart-item-info">
+        <h3><%= pizza.title %> (<%= size %>)</h3>
+
+        <div class="size-weight" style="flex-direction: row;">
+            <span class="size"><img src="assets/images/size-icon.svg" alt="Size"><%= size %></span>
+            <span class="weight"><img src="assets/images/weight.svg" alt="Weight"><%= pizza[size].weight %></span>
+        </div>
+
+        <div class="price-quantity-controller-container">
+            <span class="price"><%= pizza[size].price %>грн</span>
+            <button class="btn quantity-controller decrease">-</button>
+            <span class="quantity"><%= quantity %></span>
+            <button class="btn quantity-controller increase">+</button>
+            <button class="btn delete-item">✕</button>
+        </div>
+    </div>
+
+    <img src="assets/images/<%= pizza.image %>" alt="<%= pizza.title %>" style="transform: translateX(62px);">
+</div>

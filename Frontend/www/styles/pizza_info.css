@@ -1,0 +1,18 @@
+.banner {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    
+    color: white;
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-weight: bold;
+}
+
+.new {
+    background-color: red;
+}
+
+.popular {
+    background-color: rgb(2, 202, 2);
+}
