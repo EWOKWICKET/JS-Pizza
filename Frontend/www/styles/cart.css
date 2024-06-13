@@ -28,6 +28,7 @@
 }
 
 .cart-item-list {
+    position: relative;
     height: 600px;
     display: flex;
     flex-direction: column;
@@ -36,6 +37,7 @@
 }
 
 .cart-item {
+    position: relative;
     height: 125px;
     width: 300px;
     display: flex;
@@ -45,9 +47,13 @@
     h3 {
         color: darkorange;
         margin: 8px 0;
+        /* font-size: 17px; */
     }
 
-    img {
+    img.image {
+        position: absolute;
+        top: 0;
+        right: -62px;
         max-height: 125px;   
         display: inline-block;
     }
@@ -69,8 +75,8 @@
 }
 
 .cart-item-info {
-    width: 225px;
-    padding: 10px;
+    width: 235px;
+    padding-left: 10px;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
@@ -82,7 +88,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    gap: 6px;
+    gap: 10px;
     align-items: center;
 }
 
