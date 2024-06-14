@@ -2,7 +2,7 @@
  * Created by diana on 12.01.16.
  */
 
-var pizza_info = [
+const pizza_info = [
     {
         id:1,
         icon:'assets/images/pizza_7.jpg',
@@ -31,8 +31,8 @@ var pizza_info = [
     },
     {
         id:2,
-        icon:'assets/images/pizza_2.jpg',
-        title: "    ",
+        icon:"assets/images/pizza_2.jpg",
+        title: "BBQ",
         type: 'М’ясна піца',
         content: {
             meat: ['мисливські ковбаски', 'ковбаски папероні', 'шинка'],
@@ -101,6 +101,7 @@ var pizza_info = [
         icon:'assets/images/pizza_3.jpg',
         title: "Маргарита",
         type: 'Вега піца',
+
         content: {
             cheese: ['сир моцарелла', 'сир домашній'],
             tomato: ['помідори'],
@@ -172,6 +173,6 @@ var pizza_info = [
             price: 299
         }
     }
-];
+];  
 
-module.exports = pizza_info;
+export default pizza_info;

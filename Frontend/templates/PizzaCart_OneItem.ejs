@@ -1,30 +1,26 @@
-<div>
-    <%= pizza.title %> (<%= size %>)
-    <div>Ціна: <%= pizza[size].price %> грн.</div>
-    <div>
-        <button class="btn btn-danger minus">-</button>
-        <span class="label label-default"><%= quantity %></span>
-        <button class="btn btn-success plus">+</button>
-    </div>
-</div>
-
 <div class="cart-item">
     <div class="cart-item-info">
-        <h3><%= pizza.title %> (<%= size %>)</h3>
+        <h3><%= pizza.title %> <% if (pizza.small_size && pizza.big-size) {
+                                    if (chosen_size == "small_size") { %>
+                                        (Мала)
+                                    <% } else { %>
+                                        (Велика)
+                                    <% } 
+        } %></h3>
 
         <div class="size-weight" style="flex-direction: row;">
-            <span class="size"><img src="assets/images/size-icon.svg" alt="Size"><%= size %></span>
-            <span class="weight"><img src="assets/images/weight.svg" alt="Weight"><%= pizza[size].weight %></span>
+            <span class="size"><img src="assets/images/size-icon.svg" alt="Size"><%= pizza[chosen_size].size %></span>
+            <span class="weight"><img src="assets/images/weight.svg" alt="Weight"><%= pizza[chosen_size].weight %></span>
         </div>
 
         <div class="price-quantity-controller-container">
-            <span class="price"><%= pizza[size].price %>грн</span>
+            <span class="price"><%= pizza[chosen_size].price %>грн</span>
             <button class="btn quantity-controller decrease">-</button>
-            <span class="quantity"><%= quantity %></span>
+            <span class="quantity">1</span>
             <button class="btn quantity-controller increase">+</button>
             <button class="btn delete-item">✕</button>
         </div>
     </div>
 
-    <img src="assets/images/<%= pizza.image %>" alt="<%= pizza.title %>" style="transform: translateX(62px);">
+    <img src="$<%= pizza.icon %>" alt="<%= pizza.title %>" style="transform: translateX(62px);">
 </div>

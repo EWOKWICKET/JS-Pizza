@@ -60,28 +60,33 @@
     color: #333;
 }
 
-.navigation ul {
+.navigation  {
     margin-top: 0;
     padding: 0;
-    list-style: none;
     display: flex;      
     justify-content: center;
     flex-wrap: wrap;
     align-items: center;
     font-size: 12px;
     background-color: none;
-} 
 
-.navigation li {
-    margin: 0 10px;
-    padding: 10px;
-    border: none;
-    border-radius: 10px;
+    button {
+        margin: 0 10px;
+        padding: 10px;
+        border: none;
+        border-radius: 10px;
+        background-color: var(--background-color);
         color: rgb(216, 119, 1);
-    cursor: pointer;
-}
+        cursor: pointer;
+    }
 
-.navigation li:hover {
-    background-color: orange;
-    color: white;
-}
+    button:hover {  
+        background-color: orange;
+        color: white;
+    }
+
+    .chosen {
+        background-color: orange;
+        color: white;
+    }
+} 

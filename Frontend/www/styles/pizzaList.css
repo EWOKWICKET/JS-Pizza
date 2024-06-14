@@ -1,7 +1,7 @@
 #pizza-list {
     position: relative;
-    align-self: center;
-    justify-self: center;
+    align-items: center;
+    justify-items: center;
     width: 810px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -22,6 +22,7 @@
 
     .caption {
         padding: 5px;
+        /* padding-bottom: 0; */
         align-content: center;
         justify-content: center;
     }
@@ -40,6 +41,11 @@
 
     .category, .description, .price-info {
         margin: 1px;
+    }
+
+    .description {
+        height: 70px;
+        overflow-y: auto;
     }
 
     .category {
