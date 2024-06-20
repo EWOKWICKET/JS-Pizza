@@ -1,7 +1,3 @@
-/**
- * Created by diana on 12.01.16.
- */
-
 const pizza_info = [
     {
         id:1,
@@ -27,7 +23,6 @@ const pizza_info = [
         },
         is_new:true,
         is_popular:true
-
     },
     {
         id:2,

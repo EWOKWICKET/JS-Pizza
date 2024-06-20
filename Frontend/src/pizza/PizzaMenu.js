@@ -1,55 +1,186 @@
-/**
- * Created by chaika on 02.02.16.
- */
-var Templates = require('../Templates');
-var PizzaCart = require('./PizzaCart');
-var Pizza_List = require('../Pizza_List');
+import pizzaInfo from "../Pizza_List.js";
+import format from '../utils/format.js';
+import {initializeBuy} from './main.js';    
 
-//HTML едемент куди будуть додаватися піци
-var $pizza_list = $("#pizza_list");
+let pizza_list = document.querySelector('#pizza-list');
+let allPizzas = [];
+let pizzasToShow = [];
+let pizza_list_childs = 8;
 
-function showPizzaList(list) {
-    //Очищаємо старі піци в кошику
-    $pizza_list.html("");
+class PizzaMenu {
 
-    //Онволення однієї піци
-    function showOnePizza(pizza) {
-        var html_code = Templates.PizzaMenu_OneItem({pizza: pizza});
-
-        var $node = $(html_code);
-
-        $node.find(".buy-big").click(function(){
-            PizzaCart.addToCart(pizza, PizzaCart.PizzaSize.Big);
-        });
-        $node.find(".buy-small").click(function(){
-            PizzaCart.addToCart(pizza, PizzaCart.PizzaSize.Small);
-        });
-
-        $pizza_list.append($node);
+    constructor() {
+        this.init();
     }
 
-    list.forEach(showOnePizza);
+    init() {
+        pizzaInfo.forEach(pizza => {
+            this.addToMenu(pizza)
+        });
+    }
+
+    filterPizzas(button, filter) {
+        if (!button.classList.contains('chosen')) {
+            button.parentNode.querySelector('.chosen').classList.remove('chosen');
+            button.classList.add('chosen');
+
+            pizza_list.innerHTML = '';
+
+            if (filter === 'all') {
+                pizzasToShow = allPizzas;
+            } else {
+                pizzasToShow = allPizzas.filter(pizza => pizza.dataset.filters.split(',').includes(filter));
+            }
+
+            this.showMenu();
+        }
+    }
+
+    addToMenu(pizza) {
+        const pizzaSizeContainer = this.pizzaSizes(pizza);
+        const description = this.pizzaDescription(pizza);
+        let banner = this.checkBanner(pizza);
+        const filterTypes = this.checkFilters(pizza);
+        const filterTypesString = filterTypes.join(',');
+
+        const pizzaCard = document.createElement('div');
+        pizzaCard.classList.add('pizza-card');
+        pizzaCard.setAttribute('data-filters', filterTypesString);
+        pizzaCard.setAttribute('data-id', pizza.id.toString());
+        pizzaCard.innerHTML = `
+            ${banner}
+            <img src="${'../www/' + pizza.icon}" alt="${pizza.title}">
+        `;
+
+        const caption = document.createElement('div');
+        caption.classList.add('caption');
+        caption.innerHTML = `
+            <h3>${pizza.title}</h3>
+            <p class="category">${pizza.type}</p>
+        `;
+        caption.append(description, pizzaSizeContainer);
+
+        pizzaCard.append(caption);
+
+        allPizzas.push(pizzaCard);
+    }
+
+    checkFilters(pizza) {
+        let filterTypes = [];
+
+        if (pizza.type === "Вега піца") filterTypes.push('vega');
+
+        Object.keys(pizza.content).forEach(key => {
+            switch (key) {
+                case 'meat':
+                    filterTypes.push('meat');
+                    break;
+                case 'pineapple':
+                    filterTypes.push('pineapple');
+                    break;
+                case 'mushroom':
+                    filterTypes.push('mushroom');
+                    break;
+                case 'ocean':
+                    filterTypes.push('ocean');
+                    break;
+            }
+        });
+
+        return filterTypes;
+    }
+
+    checkBanner(pizza) {
+        if (pizza.is_new) {
+            return '<div class="banner new">Нова</div>';
+        } else if (pizza.is_popular) {
+            return '<div class="banner popular">Популярна</div>';
+        } else {
+            return '';
+        }
+    }
+
+    pizzaSizes(pizza) {
+        const pizzaSizeContainer = document.createElement('div');
+        pizzaSizeContainer.classList.add('pizza-size-container');
+
+        if (pizza.small_size) {
+            const pizzaSmallSize = pizza.small_size;
+            pizzaSizeContainer.innerHTML += `
+                <div class="pizza-size">
+                    <div class="size-weight">
+                        <span class="size"><img src="../www/assets/images/size-icon.svg" alt="size">${pizzaSmallSize.size}</span>
+                        <span class="weight"><img src="../www/assets/images/weight.svg" alt="weight">${pizzaSmallSize.weight}</span>
+                    </div>
+                    <div class="price-info">
+                        <span class="price">${pizzaSmallSize.price}грн</span>
+                        <button class="btn">Купити</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        if (pizza.big_size) {
+            const pizzaBigSize = pizza.big_size;
+            pizzaSizeContainer.innerHTML += `
+                <div class="pizza-size">
+                    <div class="size-weight">
+                        <span class="size"><img src="../www/assets/images/size-icon.svg" alt="size">${pizzaBigSize.size}</span>
+                        <span class="weight"><img src="../www/assets/images/weight.svg" alt="weight">${pizzaBigSize.weight}</span>
+                    </div>
+                    <div class="price-info">
+                        <span class="price">${pizzaBigSize.price}грн</span>
+                        <button class="btn">Купити</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        return pizzaSizeContainer;
+    }
+
+    pizzaDescription(pizza) {
+        const description = document.createElement('p');
+        description.classList.add('description');
+        let inner = '';
+
+        Object.values(pizza.content).forEach(contents => {
+            contents.forEach(content => {
+                inner += content + ', ';
+            });
+        });
+
+        description.innerHTML = format(inner); 
+
+        return description;
+    }
+
+    showMenu() {
+        pizzasToShow.forEach(pizza => {
+            pizza_list.append(pizza);
+        });
+
+        initializeBuy();
+
+        const pizzasInList = pizzasToShow.length;
+        pizza_list_childs = pizzasInList;
+        document.querySelector('.amount').innerHTML = '' + pizzasInList;
+    }
+
+    scalePizzaList() {
+        const width = window.innerWidth;
+
+        if (pizza_list_childs === 1) {
+            pizza_list.style.gridTemplateColumns = '1fr';
+            pizza_list.style.width = '270px';
+        } else if (pizza_list_childs === 2 && width > 950) {
+            pizza_list.style.gridTemplateColumns = 'repeat(2, 1fr)';
+            pizza_list.style.width = '540px';
+        } else {
+            pizza_list.style.gridTemplateColumns = '';
+            pizza_list.style.width = '';
+        }
+    }
 }
 
-function filterPizza(filter) {
-    //Масив куди потраплять піци які треба показати
-    var pizza_shown = [];
-
-    Pizza_List.forEach(function(pizza){
-        //Якщо піка відповідає фільтру
-        //pizza_shown.push(pizza);
-
-        //TODO: зробити фільтри
-    });
-
-    //Показати відфільтровані піци
-    showPizzaList(pizza_shown);
-}
-
-function initialiseMenu() {
-    //Показуємо усі піци
-    showPizzaList(Pizza_List)
-}
-
-exports.filterPizza = filterPizza;
-exports.initialiseMenu = initialiseMenu;
+export default new PizzaMenu();
